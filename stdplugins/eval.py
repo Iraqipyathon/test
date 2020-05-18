@@ -13,9 +13,9 @@ import io
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="eval"))
+@borg.on(admin_cmd("eval"))
 async def _(event):
-    if event.fwd_from or event.via_bot_id:
+    if event.fwd_from:
         return
     await event.edit("Processing ...")
     cmd = event.text.split(" ", maxsplit=1)[1]

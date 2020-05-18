@@ -1,8 +1,13 @@
 """Emoji
+
 Available Commands:
+
 .emoji shrug
+
 .emoji apple
+
 .emoji :/
+
 .emoji -_-"""
 
 from telethon import events
@@ -110,3 +115,4 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 117])
+

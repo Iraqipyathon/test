@@ -6,10 +6,10 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
-from uniborg.util import admin_cmd
+from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="whois ?(.*)"))
+@borg.on(admin_cmd("whois ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -36,11 +36,6 @@ async def _(event):
     if first_name is not None:
         # some weird people (like me) have more than 4096 characters in their names
         first_name = first_name.replace("\u2060", "")
-    last_name = replied_user.user.last_name
-    # last_name is not Manadatory in @Telegram
-    if last_name is not None:
-        last_name = html.escape(last_name)
-        last_name = last_name.replace("\u2060", "")
     # inspired by https://telegram.dog/afsaI181
     user_bio = replied_user.about
     if user_bio is not None:
@@ -51,21 +46,20 @@ async def _(event):
     except Exception as e:
         dc_id = "Need a Profile Picture to check **this**"
         location = str(e)
-    caption = """ID: <code>{}</code>
-First Name: <a href='tg://user?id={}'>{}</a>
-🤦‍♂️ Last Name: {}
+    caption = """Extracted Userdata From Anubis' DATABASE
+ID: <code>{}</code>
+Rendi's Name: <a href='tg://user?id={}'>{}</a>
 Bio: {}
 DC ID: {}
 Number of PPs: {}
-Restricted: {}
-Verified: {}
-Bot: {}
-Groups in Common: {}
+Restricted? : {}
+Verified gey: {}
+Bot(nub): {}
+Groups in Common with this gey: {}
 """.format(
         user_id,
         user_id,
         first_name,
-        last_name,
         user_bio,
         dc_id,
         replied_user_profile_photos_count,

@@ -2,10 +2,10 @@
 Syntax: .github USERNAME"""
 from telethon import events
 import requests
-from uniborg.util import admin_cmd
+from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="github (.*)"))
+@borg.on(admin_cmd("github (.*)"))
 async def _(event):
     if event.fwd_from:
         return

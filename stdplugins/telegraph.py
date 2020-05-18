@@ -7,14 +7,14 @@ import os
 from PIL import Image
 from datetime import datetime
 from telegraph import Telegraph, upload_file, exceptions
-from uniborg.util import admin_cmd
+from userbot.utils import admin_cmd
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
 auth_url = r["auth_url"]
 
 
-@borg.on(admin_cmd(pattern="telegraph (media|text) ?(.*)"))
+@borg.on(admin_cmd("telegraph (media|text) ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
